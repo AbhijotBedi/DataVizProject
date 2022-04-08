@@ -73,12 +73,12 @@
     </div>
     <svg width="1600" height="800"></svg>
     <script>
-        // The svg
+        // svg
         var svg = d3.select("svg"),
             width = +svg.attr("width"),
             height = +svg.attr("height");
 
-        // Map and projection
+        // projection
         var path = d3.geoPath();
         var projection = d3.geoNaturalEarth()
             .scale(width / 2 / Math.PI)
@@ -86,7 +86,7 @@
         var path = d3.geoPath()
             .projection(projection);
 
-        // Data and color scale
+        // color scale
         var data = d3.map();
         var colorScheme = d3.schemeReds[6];
         colorScheme.unshift("#eee")
@@ -111,7 +111,7 @@
         svg.select(".legendThreshold")
             .call(legend);
 
-        // Load external data and boot
+        // loading data
         d3.queue()
             .defer(d3.json, "http://enjalot.github.io/wwsd/data/world/world-110m.geojson")
             .defer(d3.csv, "medals.csv", function(d) { data.set(d.code, +d.medal); })
@@ -120,7 +120,7 @@
         function ready(error, topo) {
             if (error) throw error;
 
-            // Draw the map
+            // draw the map
             svg.append("g")
                 .attr("class", "countries")
                 .selectAll("path")
